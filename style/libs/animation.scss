@@ -1,0 +1,30 @@
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+  100%{
+    width: 100%;
+  }
+}
+
+@keyframes minimize {
+  0%{
+    transform: scale(1);
+    transform-origin: bottom;
+  }
+
+  100%{
+    transform: scale(0);
+  }
+}
+
+@keyframes open-window {
+  0%{
+    transform: scale(0);
+    transform-origin: center;
+  }
+
+  100%{
+    transform: scale(1);
+  }
+}
