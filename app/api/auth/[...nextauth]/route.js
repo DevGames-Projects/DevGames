@@ -66,9 +66,6 @@ const handler = NextAuth({
             session.user.id = sessionUser._id.toString()
             session.user.name = sessionUser.username
             session.user.level = sessionUser.level
-
-            console.log(session.user)
-
             return session
         },
         async signIn({profile, credentials, user}){

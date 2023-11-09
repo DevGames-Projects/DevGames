@@ -36,7 +36,9 @@ export const POST = async (req, res) => {
             level: []
         })
 
+
         await newUser.save()
+        console.log('check')
         return new Response(JSON.stringify(newUser), {status: 200})
 
     }catch (e){
