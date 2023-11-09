@@ -48,8 +48,9 @@ const handler = NextAuth({
                         }),
                     });
                     const user = await res.json();
+                    console.log(user)
                     if (res.status === 200) {
-                        return user[0];
+                        return user;
                     } else {
                         throw new Error( JSON.stringify({ errors: user, status: false }))
                     }
