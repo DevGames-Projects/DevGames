@@ -35,7 +35,7 @@ const handler = NextAuth({
                         throw new Error( JSON.stringify({ errors: user, status: false }))
                     }
                 }else if (credentials?.type === 'signIn'){
-                    const res = await fetch(`http://localhost:3000/api/auth/signIn`, {
+                    const res = await fetch(`https://dev-games-brown.vercel.app/api/auth/signIn`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
