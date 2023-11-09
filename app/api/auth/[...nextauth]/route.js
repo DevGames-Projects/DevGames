@@ -49,7 +49,7 @@ const handler = NextAuth({
                     });
                     const user = await res.json();
                     if (res.status === 200) {
-                        return user;
+                        return user[0];
                     } else {
                         throw new Error( JSON.stringify({ errors: user, status: false }))
                     }
