@@ -5,7 +5,7 @@ import {signIn} from "next-auth/react";
 
 export function LoginElement({ containerRef, setLoadingShow, setOnglet, onglet}){
     const [message, setMessage] = React.useState({
-        status: null,
+        status: false,
         message: ''
     })
     const [user, setUser] = React.useState({
@@ -36,9 +36,6 @@ export function LoginElement({ containerRef, setLoadingShow, setOnglet, onglet})
             type: 'logIn',
             redirect: false
         })
-
-
-        console.log(result)
 
 
         if(result.ok){
@@ -242,6 +239,7 @@ export function SignInElement({signInShow, setSignInShow, containerRef, setOngle
 
     async function SignIn(e){
         e.preventDefault()
+        setLoadingShow(true)
         const result = await signIn('credentials', {
             username: user.username,
             email: user.email,
