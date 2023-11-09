@@ -51,7 +51,7 @@ export default function Page(){
             <Nav onglet={onglet} setOnglet={setOnglet} navShow={navShow} />
             <main style={{height: navShow || loadingShow ? `${windowHeight - ((windowHeight * 22) / 342)}px` : `${windowHeight}`}} ref={containerRef} id='mainHome'>
                 <LoginElement onglet={onglet} setOnglet={setOnglet} setLoadingShow={setLoadingShow} containerRef={containerRef} />
-                <SignInElement onglet={onglet} setOnglet={setOnglet}  containerRef={containerRef}/>
+                <SignInElement onglet={onglet} setOnglet={setOnglet} setLoadingShow={setLoadingShow}  containerRef={containerRef}/>
                 <News onglet={onglet} setOnglet={setOnglet}/>
             </main>
             <Loading loadingShow={loadingShow} setLoadingShow={setLoadingShow}/>
