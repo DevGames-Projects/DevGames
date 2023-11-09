@@ -124,7 +124,7 @@ function Connected({session}){
     return(
         <header id="nav" style={{height: `${navHeight}px`}}>
             <div className="left-nav">
-                <img src="/apple.png" alt="Logo de devGames" className="logo"/>
+                <img src="/assets/logo.svg" alt="Logo de devGames" className="logo"/>
                 <p className="time"><span>{time.hour}</span> : <span>{time.minute}</span></p>
             </div>
 
