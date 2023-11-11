@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h2 style='color: red'>Avez-vous déjà voulu apprendre à coder ?</h2>
+<h3>👇 Si oui, je te conseille de lire la suite ! 👇</h3>
 
-## Getting Started
+<h1>DevGames:</h1>
 
-First, run the development server:
+Grâce à DevGames, vous allez pouvoir apprendre de nombreux langages de programmation de manière ludique et amusante.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<h3>❓ Comment ❓</h3>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+En allant sur le site web ( qui sera disponible à la fin du dev ) pour apprendre le HTML & CSS.
+DevGames ne sera pas juste un site web mais un environnement pour apprendre à coder.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Vous voulez apprendre le développement web ? Allez sur le web.
+- Vous voulez apprendre le c ? Jouer a un jeu dev en c
+- ...
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Toutes les plateformes qui vous permettront d'apprendre un langage seront codées avec le langage afin que vous accédez à l'environnement de votre langage mais aussi afin que je puisse apprendre ses langages de programmation.
 
-## Learn More
+Se projet en plus de vous permettre d'apprendre un langage de programmation, me permettra également d'apprendre des langages de programmation.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<h1>A quoi ça ressemble ?</h1>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Pour l'instant, je ne peux pas vous montrer beaucoup, mais ça ressemblera à ça.
 
-## Deploy on Vercel
+![img.png](img.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+J'ai decidé de faire un environnement de Macintosh car premièrement je trouve ça particulièrement beau, mais aussi pour passer une expérience réelle de pc, sans mettre en PLS votre navigateur web.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+<h2>Mais alors, que ce que DevGames a de différents des autres sites ?</h2>
+
+Je ne veux pas que vous vous ennuyez sur DevGames, je ne veux pas que vous apprenez avec du bourrage de crane. Je veux que vous soyez dans les meilleurs conditions pour apprendre. Que la science face en sorte que vous ayez toutes les chance que vous apprennez de la meilleure des manière.
+
+Et surtout, je veux que vous passiez un bon moment sur DevGames.
+
+Pour en savoir sur les nouveautés de DevGames je vous invite à visiter https://dev-games-brown.vercel.app/ afin d'être tenu au courant.
+
+
+A bientôt
