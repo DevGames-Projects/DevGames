@@ -37,4 +37,4 @@ Et surtout, je veux que vous passiez un bon moment sur DevGames.
 Pour en savoir sur les nouveautés de DevGames je vous invite à visiter https://dev-games-brown.vercel.app/ afin d'être tenu au courant.
 
 
-A bientôt
+A bientôt.
