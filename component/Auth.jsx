@@ -261,7 +261,7 @@ export function SignInElement({containerRef, setOnglet, onglet, setLoadingShow})
 
         const page = document.getElementById('signin');
         const container = containerRef.current
-        const pageDrag = document.querySelector('.headPopUp');
+        const pageDrag = document.querySelector('.headPopUpSignIn');
         const pageSize = {
             top: 0,
             left: 0,
@@ -369,7 +369,7 @@ export function SignInElement({containerRef, setOnglet, onglet, setLoadingShow})
             {
                 onglet.signin.isOpen ?
                     <section ref={SignInRef} style={{zIndex: `${onglet.signin.isMinimize ? '900' : '10'}`, top: `${newPosition.top}px`, left: `${newPosition.left}px`}} className='auth' id="signin">
-                        <div className="headPopUp" >
+                        <div className="headPopUpSignIn" >
                             <span>Bienvenu sur  DevGames</span>
                             <div class="buttons-nav">
                                 <button className="unShowButton" onClick={minimizeWindow}></button>

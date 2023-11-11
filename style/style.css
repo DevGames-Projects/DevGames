@@ -48,7 +48,7 @@ html {
   color: #EA1410;
 }
 
-.headPopUp, .headPopUpLogin {
+.headPopUp, .headPopUpLogin, .headPopUpSignIn {
   width: 100%;
   background: #000179;
   color: white;
@@ -59,19 +59,19 @@ html {
   justify-content: space-between;
   user-select: none;
 }
-.headPopUp .buttons-nav, .headPopUpLogin .buttons-nav {
+.headPopUp .buttons-nav, .headPopUpLogin .buttons-nav, .headPopUpSignIn .buttons-nav {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.headPopUp .closeButton, .headPopUpLogin .closeButton {
+.headPopUp .closeButton, .headPopUpLogin .closeButton, .headPopUpSignIn .closeButton {
   width: 20px;
   height: 20px;
   background: url("/assets/icons/cross.svg") center no-repeat;
   background-size: 80%;
   border: 0;
 }
-.headPopUp .unShowButton, .headPopUpLogin .unShowButton {
+.headPopUp .unShowButton, .headPopUpLogin .unShowButton, .headPopUpSignIn .unShowButton {
   width: 20px;
   height: 20px;
   background: url("/assets/icons/bar.svg") center no-repeat;
@@ -343,6 +343,31 @@ button:active {
 }
 .news-container article p {
   line-height: 20px;
+}
+
+.file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  gap: 5px;
+  color: white;
+  padding: 2px;
+  min-width: 70px;
+}
+.file img, .file p {
+  pointer-events: none;
+  user-select: none;
+}
+
+.window {
+  width: 50%;
+  background: #B9B9B9;
+  padding: 3px;
+  position: absolute;
+}
+.window .content {
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

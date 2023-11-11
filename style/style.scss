@@ -24,7 +24,7 @@ html {
   color: #EA1410;
 }
 
-.headPopUp, .headPopUpLogin {
+.headPopUp, .headPopUpLogin, .headPopUpSignIn {
   width: 100%;
   background: #000179;
   color: white;
@@ -360,13 +360,34 @@ button {
     flex-direction: column;
     gap: 20px;
 
-
-
-
-
-
     p {
       line-height: 20px;
     }
+  }
+}
+
+.file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  gap: 5px;
+  color: white;
+  padding: 2px;
+  min-width: 70px;
+
+  img, p{
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.window {
+  width: 50%;
+  background: #B9B9B9;padding: 3px;
+  position: absolute;
+
+  .content {
+    margin-top: 10px;
   }
 }

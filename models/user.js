@@ -16,8 +16,8 @@ const UserSchema = new Schema({
         require: [true, 'Password already exists']
     },
     level: {
-        type: Object,
-        default: {}
+        type: Number,
+        default: 1
     },
 
 })
