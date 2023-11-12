@@ -5,12 +5,16 @@ import {useSession} from "next-auth/react";
 
 export default function Folders(props){
     const {data: session} = useSession()
+    const [dataPosition, setDataPosition]= React.useState({
+        top: 0,
+        left: 0
+    })
     const folderRef = React.useRef()
     const isClicked = React.useRef(false)
     const [isSelect, setIsSelect] =React.useState(false)
     const [newPosition, setNewPosition] = React.useState({
-        top: props.position.top,
-        left: props.position.left
+        top: 0,
+        left: 0
     })
     const coords = React.useRef({
         startX: props.position.left,
@@ -32,6 +36,11 @@ export default function Folders(props){
             right: window.innerWidth
 
         }
+
+        setDataPosition({
+            top: props.position.top,
+            left: props.position.left
+        })
 
 
         function handleMouseDown(e){

@@ -25,6 +25,7 @@ export default function FileWindow({fileWindow, containerRef, setFileWindow}){
 
 
 function ReadWindow(props){
+    const [windowHeight, setWindowHeight] = React.useState(null)
     const [content, setContent] = React.useState('')
     const [newPosition, setNewPosition] = React.useState({
         top: 0,
@@ -51,6 +52,8 @@ function ReadWindow(props){
                 setContent(element.content)
             }
         }
+
+        setWindowHeight(window.innerHeight)
 
         const page = document.getElementById(`window-${props.name}`);
         const pageDrag = document.querySelector(`.headPopUp-${props.name}`);
@@ -157,7 +160,7 @@ function ReadWindow(props){
     }
 
     return(
-        <section className="window" id={`window-${props.name}`} style={{maxHeight: `${window.innerHeight - ((window.innerHeight * 22) / 342)}px`, top: `${newPosition.top}px`, left: `${newPosition.left}px`, zIndex: isTop ? '990' : "50"}}>
+        <section className="window" id={`window-${props.name}`} style={{maxHeight: `${windowHeight - ((windowHeight * 22) / 342)}px`, top: `${newPosition.top}px`, left: `${newPosition.left}px`, zIndex: isTop ? '990' : "50"}}>
             <div className={`headPopUp-${props.name} headPopUp`} ><span>{props.name}</span> <div className="buttons-nav">
                 <button className="unShowButton" onClick={minimizeWindow}></button>
                 <button className="closeButton" onClick={closeButton}></button>
@@ -171,6 +174,11 @@ function ReadWindow(props){
 }
 
 function DisconnectWindow(props){
+    const [windowHeight, setWindowHeight] = React.useState(null)
+
+    React.useEffect(() => {
+        setWindowHeight(window.innerHeight)
+    }, [])
 
     function closeButton(){
 
@@ -182,7 +190,7 @@ function DisconnectWindow(props){
     }
 
     return(
-        <section className="window" id={`window-${props.name}`} style={{ top: `${(window.innerHeight - ((window.innerHeight * 22) / 342) - 150) / 2}px`, left: `50%`, zIndex: '999', transform: 'translateX(-50%)', width: "20%", resize: "none"}}>
+        <section className="window" id={`window-${props.name}`} style={{ top: `${(windowHeight - ((windowHeight * 22) / 342) - 150) / 2}px`, left: `50%`, zIndex: '999', transform: 'translateX(-50%)', width: "20%", resize: "none"}}>
             <div className={`headPopUp-${props.name} headPopUp`} ><span>{props.name}</span> <div className="buttons-nav">
                 <button className="closeButton" onClick={closeButton}></button>
             </div></div>

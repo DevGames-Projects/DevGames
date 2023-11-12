@@ -27,6 +27,7 @@ export default function FolderWindow({folderWindow, containerRef, setFolderWindo
 
 export function SettingsFolderWindow(props){
     const [content, setContent] = React.useState(null)
+    const [windowHeight, setWindowHeight] = React.useState(null)
     const [newPosition, setNewPosition] = React.useState({
         top: 0,
         left: 0
@@ -53,6 +54,7 @@ export function SettingsFolderWindow(props){
             }
         }
 
+        setWindowHeight(window.innerHeight)
         const page = document.getElementById(`window-${props.name}`);
         const pageDrag = document.querySelector(`.headPopUp-${props.name}`);
         const container = props.containerRef.current
@@ -141,7 +143,7 @@ export function SettingsFolderWindow(props){
     }
 
     return(
-        <section className="window-folder" id={`window-${props.name}`} style={{maxHeight: `${window.innerHeight - ((window.innerHeight * 22) / 342)}px`, top: `${newPosition.top}px`, left: `${newPosition.left}px`, zIndex: isTop ? '990' : "50"}}>
+        <section className="window-folder" id={`window-${props.name}`} style={{maxHeight: `${windowHeight - ((windowHeight * 22) / 342)}px`, top: `${newPosition.top}px`, left: `${newPosition.left}px`, zIndex: isTop ? '990' : "50"}}>
             <div className={`headPopUp-${props.name} headPopUp`} ><span>{props.name}</span> <div className="buttons-nav">
                 <button className="closeButton" onClick={closeButton}></button>
             </div></div>
@@ -155,6 +157,7 @@ export function SettingsFolderWindow(props){
 
 export function NormalFolderWindow(props){
     const [content, setContent] = React.useState(null)
+    const [windowHeight, setWindowHeight] = React.useState(null)
     const [newPosition, setNewPosition] = React.useState({
         top: 0,
         left: 0
@@ -181,6 +184,7 @@ export function NormalFolderWindow(props){
             }
         }
 
+        setWindowHeight(window.innerHeight)
         const page = document.getElementById(`window-${props.name}`);
         const pageDrag = document.querySelector(`.headPopUp-${props.name}`);
         const container = props.containerRef.current
@@ -269,7 +273,7 @@ export function NormalFolderWindow(props){
     }
 
     return(
-        <section className="window-folder" id={`window-${props.name}`} style={{maxHeight: `${window.innerHeight - ((window.innerHeight * 22) / 342)}px`, top: `${newPosition.top}px`, left: `${newPosition.left}px`, zIndex: isTop ? '990' : "50"}}>
+        <section className="window-folder" id={`window-${props.name}`} style={{maxHeight: `${windowHeight - ((windowHeight * 22) / 342)}px`, top: `${newPosition.top}px`, left: `${newPosition.left}px`, zIndex: isTop ? '990' : "50"}}>
             <div className={`headPopUp-${props.name} headPopUp`} ><span>{props.name}</span> <div className="buttons-nav">
                 <button className="closeButton" onClick={closeButton}></button>
             </div></div>
