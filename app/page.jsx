@@ -8,9 +8,13 @@ import {Loading} from "@/component/Loading";
 import NavBottom from "@/component/NavBottom";
 import News from "@/component/News";
 import Files from "@/component/Files";
-import FileWindow from "@/component/fileWindow";
+import FileWindow from "@/component/FileWindow";
 import {useSession} from "next-auth/react";
 import {fileData} from "@/data/fileData";
+import {folderData} from "@/data/folderData";
+import Folders from "@/component/Folder";
+import FolderWindow, {NormalFolderWindow} from "@/component/FolderWindow";
+import {useCustomInfo} from "@/component/CustomProvider";
 
 export default function Page(){
     const {data: session} = useSession()
@@ -39,27 +43,54 @@ export default function Page(){
         }
     })
     const [fileWindow, setFileWindow] = React.useState([])
+    const [folderWindow, setFolderWindow] = React.useState([])
     const containerRef= useRef()
+    const { customInfo, setCustomInfoData } = useCustomInfo()
 
     React.useEffect(() => {
         if (typeof window !== "undefined") {
             // Access the window object safely
             setWindowHeight(window.innerHeight)
         }
+
+        setCustomInfoData(prev => ({
+            ...prev,
+            fileWindow: fileWindow,
+            setFileWindow: setFileWindow
+        }))
     }, [])
 
     return(
         <>
             <Nav onglet={onglet} setOnglet={setOnglet} navShow={navShow} />
-            <main style={{height: navShow || loadingShow ? `${windowHeight - ((windowHeight * 22) / 342)}px` : `${windowHeight}`}} ref={containerRef} id='mainHome'>
+            <main style={{height: navShow || loadingShow ? `${windowHeight - ((windowHeight * 22) / 342)}px` : `${windowHeight}`}} ref={containerRef} id='mainHome' onContextMenu={(e) => e.preventDefault()}>
                 <LoginElement onglet={onglet} setOnglet={setOnglet} setLoadingShow={setLoadingShow} containerRef={containerRef} />
                 <SignInElement onglet={onglet} setOnglet={setOnglet} setLoadingShow={setLoadingShow}  containerRef={containerRef}/>
                 <News onglet={onglet} setOnglet={setOnglet}/>
                 <FileWindow setFileWindow={setFileWindow} fileWindow={fileWindow} containerRef={containerRef}/>
+                <FolderWindow folderWindow={folderWindow} setFolderWindow={setFolderWindow} containerRef={containerRef}/>
+
+                {
+                    folderData.map(folder => folder.level === 0 ? <Folders folderWindow={folderWindow} setFolderWindow={setFolderWindow} containerRef={containerRef} {...folder} /> : null)
+                }
 
                 {
                     session?.user ?
-                        fileData.map(fileSelect => fileSelect.level === session.user.level ? <Files fileWindow={fileWindow} setFileWindow={setFileWindow} containerRef={containerRef} {...fileSelect} /> : null)
+                        null
+                        :
+                        fileData.map(fileSelect => fileSelect.firstPage ? <Files fileWindow={fileWindow} setFileWindow={setFileWindow} containerRef={containerRef} {...fileSelect} /> : null)
+                }
+
+                {
+                    session?.user ?
+                        fileData.map(fileSelect => fileSelect.level === session.user.level && !fileSelect.firstPage ? <Files fileWindow={fileWindow} setFileWindow={setFileWindow} containerRef={containerRef} {...fileSelect} /> : null)
+                        :
+                        null
+                }
+
+                {
+                    session?.user ?
+                        folderData.map(folderSelect => folderSelect.level === session.user.level ? <Folders folderWindow={folderWindow} setFolderWindow={setFolderWindow} containerRef={containerRef} {...folderSelect} /> : null)
                         :
                         null
                 }

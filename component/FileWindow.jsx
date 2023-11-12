@@ -2,7 +2,7 @@
 
 import React, {useRef} from "react";
 import {fileData} from "@/data/fileData";
-import {signIn} from "next-auth/react";
+import {signIn, signOut} from "next-auth/react";
 
 export default function FileWindow({fileWindow, containerRef, setFileWindow}){
     return(
@@ -12,8 +12,8 @@ export default function FileWindow({fileWindow, containerRef, setFileWindow}){
                     switch (windowSelect.type){
                         case 'read':
                             return <ReadWindow {...windowSelect} fileWindow={fileWindow} setFileWindow={setFileWindow} containerRef={containerRef}/>
-                        case 'photo':
-                            return <p>photo</p>
+                        case 'disconnect':
+                            return <DisconnectWindow {...windowSelect} fileWindow={fileWindow} setFileWindow={setFileWindow}/>
                         default:
                             return
                     }
@@ -157,14 +157,42 @@ function ReadWindow(props){
     }
 
     return(
-        <section class="window" id={`window-${props.name}`} style={{maxHeight: `${window.innerHeight - ((window.innerHeight * 22) / 342)}px`, top: `${newPosition.top}px`, left: `${newPosition.left}px`, zIndex: isTop ? '990' : "50"}}>
+        <section className="window" id={`window-${props.name}`} style={{maxHeight: `${window.innerHeight - ((window.innerHeight * 22) / 342)}px`, top: `${newPosition.top}px`, left: `${newPosition.left}px`, zIndex: isTop ? '990' : "50"}}>
             <div className={`headPopUp-${props.name} headPopUp`} ><span>{props.name}</span> <div className="buttons-nav">
                 <button className="unShowButton" onClick={minimizeWindow}></button>
                 <button className="closeButton" onClick={closeButton}></button>
             </div></div>
 
-            <div class="content">
+            <div className="content">
                 {content}
+            </div>
+        </section>
+    )
+}
+
+function DisconnectWindow(props){
+
+    function closeButton(){
+
+        props.setFileWindow(prev => {
+            const newArray = prev.filter(element => element.name !== props.name)
+
+            return newArray
+        })
+    }
+
+    return(
+        <section className="window" id={`window-${props.name}`} style={{ top: `${(window.innerHeight - ((window.innerHeight * 22) / 342) - 150) / 2}px`, left: `50%`, zIndex: '999', transform: 'translateX(-50%)', width: "20%", resize: "none"}}>
+            <div className={`headPopUp-${props.name} headPopUp`} ><span>{props.name}</span> <div className="buttons-nav">
+                <button className="closeButton" onClick={closeButton}></button>
+            </div></div>
+
+            <div className="content disconnect">
+                <p>Etes vous sur de vouloir vous déconnecter ?</p>
+                <div className="buttons">
+                    <button onClick={() => signOut()}>Oui</button>
+                    <button onClick={closeButton}>Non</button>
+                </div>
             </div>
         </section>
     )

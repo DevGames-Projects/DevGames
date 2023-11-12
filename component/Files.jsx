@@ -1,8 +1,11 @@
 'use client'
 
 import React from "react";
+import {useCustomInfo} from "@/component/CustomProvider";
+import {useSession} from "next-auth/react";
 
 export default function Files(props){
+    const {data: session} = useSession()
     const fileRef = React.useRef()
     const isClicked = React.useRef(false)
     const [isSelect, setIsSelect] =React.useState(false)
@@ -11,11 +14,12 @@ export default function Files(props){
         left: props.position.left
     })
     const coords = React.useRef({
-        startX: 0,
-        startY: 0,
-        lastX: 0,
-        lastY: 0
+        startX: props.position.left,
+        startY: props.position.top,
+        lastX: props.position.left,
+        lastY: props.position.top
     })
+
 
 
     React.useEffect(() => {
@@ -100,7 +104,7 @@ export default function Files(props){
             container.removeEventListener('mousemove', handleMouseMove)
             container.removeEventListener('mouseleave', handleMouseUp)
         }
-    }, [])
+    }, [session])
 
 
     function handleDoubleClick(){
@@ -119,7 +123,7 @@ export default function Files(props){
             for (let i = 0; i < props.fileWindow.length; i++) {
                 const element = props.fileWindow[i]
 
-                if(props.fileWindow[i].name === name){
+                if(element.name === props.name){
                     counter++
                 }
             }
@@ -141,7 +145,64 @@ export default function Files(props){
 
 
     return(
-        <article style={{top: newPosition.top, left: newPosition.left, background: isSelect ? 'blue': null}} class="file" id={props.name} ref={fileRef} onDoubleClick={handleDoubleClick}>
+        <>
+            {
+                session?.user || props.firstPage ?
+                    <article style={{top: newPosition.top, left: newPosition.left, background: isSelect ? 'blue': null}} className="file" id={props.name} ref={fileRef} onDoubleClick={handleDoubleClick}>
+                        <img src={props.img} alt={props.name + 'file'}/>
+                        <p className="file-name">{props.name}</p>
+                    </article>
+                    :
+                    null
+            }
+        </>
+    )
+}
+
+
+
+export function FileInFolder(props){
+    const { customInfo, setCustomInfoData } = useCustomInfo()
+
+    function handleDoubleClick(){
+        if (customInfo?.fileWindow.length < 1){
+            customInfo?.setFileWindow(prev => ([
+                ...prev,
+                {
+                    name: props.name,
+                    type: props.type,
+                    isMinimize: props.isMinimize,
+                    img: props.img
+                }
+            ]))
+        }else{
+            let counter = 0
+            for (let i = 0; i < customInfo?.fileWindow.length; i++) {
+                const element = customInfo?.fileWindow[i]
+
+                if(customInfo?.fileWindow[i].name === name){
+                    counter++
+                }
+            }
+
+            if (counter === 0){
+                customInfo?.setFileWindow(prev => ([
+                    ...prev,
+                    {
+                        name: props.name,
+                        type: props.type,
+                        isMinimize: props.isMinimize,
+                        img: props.img
+                    }
+                ]))
+            }
+
+        }
+    }
+
+
+    return(
+        <article class="file-in-folder" id={props.name} onDoubleClick={handleDoubleClick}>
             <img src={props.img} alt={props.name + 'file'}/>
             <p class="file-name">{props.name}</p>
         </article>

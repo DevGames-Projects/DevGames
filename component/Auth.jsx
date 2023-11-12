@@ -1,9 +1,10 @@
 "use client"
 
 import React, {useRef} from "react";
-import {signIn} from "next-auth/react";
+import {signIn, useSession} from "next-auth/react";
 
 export function LoginElement({ containerRef, setLoadingShow, setOnglet, onglet}){
+    const {data: session} = useSession()
     const [message, setMessage] = React.useState({
         status: false,
         message: ''
@@ -42,6 +43,11 @@ export function LoginElement({ containerRef, setLoadingShow, setOnglet, onglet})
             setMessage({
                 status: true,
                 message:'Votre compte a bien été trouvé'
+            })
+        }else{
+            setMessage({
+                status: false,
+                message: 'Votre adresse email ou mot de passe ne correspond pas'
             })
         }
     }
@@ -195,8 +201,15 @@ export function LoginElement({ containerRef, setLoadingShow, setOnglet, onglet})
                                     </div>
                                 </div>
                                 <div className="button-form">
-                                    <button type='submit' className="send">OK.</button>
-                                    <button onClick={closeWindow}>Cancel</button>
+                                    {
+                                        session?.user ?
+                                            <button onClick={closeWindow}>Fermer</button>
+                                            :
+                                            <>
+                                                <button type='submit' className="send">OK.</button>
+                                                <button onClick={closeWindow}>Cancel</button>
+                                            </>
+                                    }
 
                                     <p className={`message-form ${message.status ? 'check' : 'error'}`}>{message.message}</p>
                                 </div>
@@ -214,6 +227,7 @@ export function LoginElement({ containerRef, setLoadingShow, setOnglet, onglet})
 
 
 export function SignInElement({containerRef, setOnglet, onglet, setLoadingShow}){
+    const {data: session} = useSession()
     const [message, setMessage] = React.useState({
         status: null,
         message: ''
@@ -248,11 +262,43 @@ export function SignInElement({containerRef, setOnglet, onglet, setLoadingShow})
             redirect: false
         })
 
+        const error = JSON.parse(result?.error)
+
+
         if(result.ok){
             setMessage({
                 status: true,
-                message:'Votre compte a bien été crée'
+                message:'Votre compte a bien été trouvé'
             })
+        }else{
+            switch (error.errors){
+                case 'erreur username':
+                    setMessage({
+                        status: false,
+                        message: 'Veuillez entrer un pseudo'
+                    })
+                    break
+                case 'erreur username exist':
+                    setMessage({
+                        status: false,
+                        message: "Ce nom d'utilisateur existe déjà"
+                    })
+                    break
+                case 'erreur password':
+                    setMessage({
+                        status: false,
+                        message: 'Veuillez entrer un mot de passe valide avec minimum 8 charactères'
+                    })
+                    break
+                case 'erreur user':
+                    setMessage({
+                        status: false,
+                        message: 'Le compte que vous essayez de crée existe déjà'
+                    })
+                    break
+                default:
+                    break
+            }
         }
     }
 
@@ -406,8 +452,15 @@ export function SignInElement({containerRef, setOnglet, onglet, setLoadingShow})
                                     </div>
                                 </div>
                                 <div className="button-form">
-                                    <button type='submit' className="send">OK.</button>
-                                    <button onClick={closeWindow}>Cancel</button>
+                                    {
+                                        session?.user ?
+                                            <button onClick={closeWindow}>Fermer</button>
+                                            :
+                                            <>
+                                                <button type='submit' className="send">OK.</button>
+                                                <button onClick={closeWindow}>Cancel</button>
+                                            </>
+                                    }
 
                                     <p className={`message-form ${message.status ? 'check' : 'error'}`}>{message.message}</p>
                                 </div>

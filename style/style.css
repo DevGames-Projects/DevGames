@@ -38,6 +38,7 @@
 
 html {
   font-size: 18px;
+  word-spacing: 6px;
 }
 
 .check {
@@ -288,7 +289,6 @@ button:active {
   border-left: 3px solid grey;
   border-bottom: 3px solid black;
   border-right: 3px solid black;
-  height: 60px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -298,7 +298,8 @@ button:active {
   border: 0;
 }
 .nav-bottom img {
-  width: 50px;
+  width: 40px;
+  padding-right: 5px;
   border-right: 2px solid black;
 }
 
@@ -314,7 +315,7 @@ button:active {
   width: 70px;
   position: absolute;
   bottom: 20px;
-  right: 20px;
+  right: 30px;
   padding: 10px;
   border-radius: 20px;
   background: #1E1E1E;
@@ -331,6 +332,7 @@ button:active {
   border-radius: 20px;
   max-height: 70%;
   overflow: auto;
+  z-index: 999;
 }
 .news-container .news {
   display: flex;
@@ -345,7 +347,7 @@ button:active {
   line-height: 20px;
 }
 
-.file {
+.file, .folder {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -355,9 +357,41 @@ button:active {
   padding: 2px;
   min-width: 70px;
 }
-.file img, .file p {
+.file img, .file p, .folder img, .folder p {
   pointer-events: none;
   user-select: none;
+}
+
+.folder img {
+  width: 50px;
+}
+
+.file-in-folder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.file-in-folder img, .file-in-folder p {
+  pointer-events: none;
+  user-select: none;
+}
+
+.content-folder {
+  display: grid;
+  grid: auto/1fr 1fr 1fr 1fr;
+}
+
+.disconnect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+.disconnect .buttons {
+  display: flex;
+  gap: 10px;
 }
 
 .window {
@@ -365,8 +399,37 @@ button:active {
   background: #B9B9B9;
   padding: 3px;
   position: absolute;
+  resize: both;
+  overflow: auto;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
 }
 .window .content {
+  margin-top: 10px;
+}
+
+.window-folder {
+  width: 50%;
+  background: #495057;
+  color: white;
+  padding: 3px;
+  position: absolute;
+  resize: both;
+  overflow: auto;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+}
+.window-folder .headPopUp {
+  background: #6c757d;
+  color: white;
+}
+.window-folder .content {
+  display: grid;
+  grid: auto/1fr 1fr 1fr 1fr;
   margin-top: 10px;
 }
 
