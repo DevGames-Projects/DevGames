@@ -21,7 +21,7 @@ export default function News({onglet, setOnglet}){
                         <section id='news' style={{transformOrigin: 'bottom right'}} ref={sliderRef} className='news-container open-window-animation'>
                             <div className='news'>
                                 {
-                                    newsData.map(news => <NewsContent key={news.id} {...news} />)
+                                    newsData.map(news => <NewsContent key={news.id} {...news} content={news.content.replace(/\n/g, '<br>')} />)
                                 }
                             </div>
                         </section>
@@ -78,8 +78,8 @@ function NewsContent(props){
     }, [])
     return(
         <article>
-            <h2 className='news-title' style={{color: colorText !== null ? colorText : null}}>Jour {props.numberDate}:</h2>
-            <p style={{lineHeight: "25px"}}>{props.content}</p>
+            <h2 className='news-title' style={{color: colorText !== null ? colorText : null}}>v {props.version}:</h2>
+            <p style={{lineHeight: "25px"}} dangerouslySetInnerHTML={{__html: props.content}}></p>
         </article>
     )
 }

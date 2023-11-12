@@ -33,7 +33,7 @@ export const POST = async (req, res) => {
             email: email,
             username: username,
             password: hashedPassword,
-            level: []
+            level: 1
         })
 
 

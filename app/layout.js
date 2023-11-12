@@ -1,4 +1,5 @@
 import Provider from "@/component/Provider";
+import {CustomProvider} from "@/component/CustomProvider";
 import '@/style/style.css'
 
 export const metadata = {
@@ -10,9 +11,11 @@ export default function RootLayout({ children }) {
     return (
         <html lang="fr">
         <body>
-        <Provider>
-            {children}
-        </Provider>
+        <CustomProvider>
+            <Provider>
+                {children}
+            </Provider>
+        </CustomProvider>
         </body>
         </html>
     )

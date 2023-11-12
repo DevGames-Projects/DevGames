@@ -1,8 +1,9 @@
 'use client'
 
 import React from "react";
+import {fileData} from "@/data/fileData";
 
-export default function NavBottom({ onglet, setOnglet }){
+export default function NavBottom({ onglet, setOnglet, fileWindow, setFileWindow }){
     const [ ongletMinimize, setOngletMinimize ] = React.useState({})
 
     React.useEffect(() => {
@@ -14,7 +15,23 @@ export default function NavBottom({ onglet, setOnglet }){
                         ...prev,
                         [key]: {
                             [key]: key,
-                            img: value.img
+                            img: value.img,
+                            type: 'auth'
+                        }
+                    }))
+                }
+            }
+
+            for (let i = 0; i < fileWindow.length; i++) {
+                const element = fileWindow[i]
+
+                if (element.isMinimize === true){
+                    setOngletMinimize(prev => ({
+                        ...prev,
+                        [element.name]: {
+                            name: element.name,
+                            img: element.img,
+                            type: 'normal'
                         }
                     }))
                 }
@@ -24,7 +41,6 @@ export default function NavBottom({ onglet, setOnglet }){
 
         }
 
-        console.log(ongletMinimize)
 
         searchOnglet()
 
@@ -32,51 +48,97 @@ export default function NavBottom({ onglet, setOnglet }){
         return () => {
             searchOnglet()
         }
-    }, [onglet])
+    }, [onglet, fileWindow])
 
-    function removeMinimize(e){
+    function removeMinimize(type, name, e){
         const updatedOngletMinimize = { ...ongletMinimize };
+        if(type === 'auth'){
 
-        // Check if the key (e.target.value) exists in ongletMinimize
-        if (updatedOngletMinimize.hasOwnProperty(e.target.className)) {
-            const elementName = e.target.className
-            // Remove the key from the copy
-            delete updatedOngletMinimize[e.target.className];
+            // Check if the key (e.target.value) exists in ongletMinimize
+            if (updatedOngletMinimize.hasOwnProperty(e.target.className)) {
+                const elementName = e.target.className
+                // Remove the key from the copy
+                delete updatedOngletMinimize[e.target.className];
 
-            // Update the state with the modified copy
+                // Update the state with the modified copy
 
-            for (const [key, value] of Object.entries(onglet)){
-                if (key === elementName){
-                    setOnglet(prev => ({
-                        ...prev,
-                        [elementName]: {
-                            ...prev[elementName],
-                            isMinimize: false,
-                            isOpen: true
+                for (const [key, value] of Object.entries(onglet)){
+                    if (key === elementName){
+                        setOnglet(prev => ({
+                            ...prev,
+                            [elementName]: {
+                                ...prev[elementName],
+                                isMinimize: false,
+                                isOpen: true
+                            }
+                        }))
+
+                        setTimeout(() => {
+                            document.getElementById(`${key}`).classList.remove('open-window-animation')
+                        }, 500)
+
+                    }
+                }
+
+
+                setTimeout(()=> {
+                    setOngletMinimize(updatedOngletMinimize);
+                }, 200)
+            }
+        }else if(type === 'normal'){
+            for (let i = 0; i <fileData.length; i++) {
+                const element = fileData[i]
+
+                if (element.name === name){
+                    if (fileWindow.length < 1){
+                        setFileWindow(prev => ([
+                            ...prev,
+                            {
+                                name: name,
+                                type: element.type,
+                                isMinimize: element.isMinimize,
+                                img: element.img,
+                            }
+                        ]))
+                    }else{
+                        let counter = 0
+                        for (let i = 0; i < fileWindow.length; i++) {
+                            const element = fileWindow[i]
+
+                            if(fileWindow[i].name === name){
+                                counter++
+                            }
                         }
-                    }))
 
-                    setTimeout(() => {
-                        document.getElementById(`${key}`).classList.remove('open-window-animation')
-                    }, 500)
+                        if (counter === 0){
+                            setFileWindow(prev => ([
+                                ...prev,
+                                {
+                                    name: name,
+                                    type: element.type,
+                                    isMinimize: element.isMinimize,
+                                    img: element.img,
+                                }
+                            ]))
+                        }
 
+                    }
                 }
             }
 
 
-            setTimeout(()=> {
-                setOngletMinimize(updatedOngletMinimize);
-            }, 200)
+            delete updatedOngletMinimize[name];
+            setOngletMinimize(updatedOngletMinimize);
         }
     }
 
 
     return(
         <>
-            {Object.keys(ongletMinimize).length > 0 ? (
+            {Object.keys(ongletMinimize).length > 0 || fileWindow.length > 0 ? (
                 <section className="nav-bottom">
                     {Object.keys(ongletMinimize).map((key, index ) => (
-                        <img src={ongletMinimize[key].img} className={key} onClick={removeMinimize} alt={key}/>
+                        <img src={ongletMinimize[key].img} className={key} onClick={(e) => removeMinimize(ongletMinimize[key].type, ongletMinimize[key].name, e)} alt={key}/>
                     ))}
                 </section>
             ) : null}

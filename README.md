@@ -3,12 +3,21 @@
 
 <h1>DevGames:</h1>
 
+<<<<<<< HEAD
 Grâce à DevGames, vous allez pouvoir apprendre de nombreux langages de programmation de manière ludique et amusante.
 
 <h3>❓ Comment ❓</h3>
 
 En allant sur le site web ( qui sera disponible à la fin du dev ) pour apprendre le HTML & CSS.
 DevGames ne sera pas juste un site web mais un environnement pour apprendre à coder.
+=======
+Grâce à DevGames, vous allez pouvoir apprendre de nombreux langages de programmation de manière ludique et amusante. 
+
+<h3>❓ Comment ❓</h3>
+
+En allant sur le site web ( qui sera disponible à la fin du dev ) pour apprendre le HTML & CSS. 
+DevGames ne sera pas juste un site web mais un environnement pour apprendre à coder. 
+>>>>>>> dev
 
 - Vous voulez apprendre le développement web ? Allez sur le web.
 - Vous voulez apprendre le c ? Jouer a un jeu dev en c
@@ -32,9 +41,17 @@ J'ai decidé de faire un environnement de Macintosh car premièrement je trouve 
 
 Je ne veux pas que vous vous ennuyez sur DevGames, je ne veux pas que vous apprenez avec du bourrage de crane. Je veux que vous soyez dans les meilleurs conditions pour apprendre. Que la science face en sorte que vous ayez toutes les chance que vous apprennez de la meilleure des manière.
 
+<<<<<<< HEAD
 Et surtout, je veux que vous passiez un bon moment sur DevGames.
+=======
+Et surtout, je veux que vous passiez un bon moment sur DevGames. 
+>>>>>>> dev
 
 Pour en savoir sur les nouveautés de DevGames je vous invite à visiter https://dev-games-brown.vercel.app/ afin d'être tenu au courant.
 
 
+<<<<<<< HEAD
 A bientôt.
+=======
+A bientôt
+>>>>>>> dev
