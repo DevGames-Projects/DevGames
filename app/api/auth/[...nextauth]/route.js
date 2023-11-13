@@ -17,7 +17,7 @@ const handler = NextAuth({
             async authorize(credentials, req) {
                 if (credentials?.type === 'logIn'){
                     console.log(req.body.callbackUrl)
-                    const res = await fetch(`https://dev-games-brown.vercel.app/api/auth/logIn`, {
+                    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/logIn`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const handler = NextAuth({
                         throw new Error( JSON.stringify({ errors: user, status: false }))
                     }
                 }else if (credentials?.type === 'signIn'){
-                    const res = await fetch(`https://dev-games-brown.vercel.app/api/auth/signIn`, {
+                    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/signIn`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
