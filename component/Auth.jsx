@@ -38,6 +38,8 @@ export function LoginElement({ containerRef, setLoadingShow, setOnglet, onglet})
             redirect: false
         })
 
+        console.log(result)
+
 
         if(result.ok){
             setMessage({
