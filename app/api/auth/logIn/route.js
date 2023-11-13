@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 export const POST = async (req, res) => {
     const {email, password} = await req.json()
     let isSamePassword = null
+    console.log('Email:', email, 'Password:', password);
 
     try {
         await connectToDb()
@@ -25,11 +26,14 @@ export const POST = async (req, res) => {
         const userExist = await User.findOne({email : email})
         console.log(userExist, 'r')
 
-        if (userExist.length){
-            isSamePassword =  await bcrypt.compare(password, userExist[0].password)
+        if (userExist){
+            isSamePassword =  await bcrypt.compare(password, userExist.password)
         }
 
-        if(userExist.length === 0 || !isSamePassword){
+        console.log(isSamePassword, !userExist)
+
+
+        if(!userExist || !isSamePassword){
             return new Response(JSON.stringify("erreur user"), { status: 500})
         }
 

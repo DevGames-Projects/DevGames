@@ -16,6 +16,7 @@ const handler = NextAuth({
             },
             async authorize(credentials, req) {
                 if (credentials?.type === 'logIn'){
+                    console.log(req.body.callbackUrl)
                     const res = await fetch(`https://earnest-entremet-d23403.netlify.app/api/auth/logIn`, {
                         method: "POST",
                         headers: {
@@ -28,13 +29,14 @@ const handler = NextAuth({
                         }),
                     });
                     const user = await res.json();
+                    console.log(user)
                     if (res.status === 200) {
-                        return user[0];
+                        return user;
                     } else {
                         throw new Error( JSON.stringify({ errors: user, status: false }))
                     }
                 }else if (credentials?.type === 'signIn'){
-                    const res = await fetch(`https://earnest-entremet-d23403.netlify.app/api/auth/signIn`, {
+                    const res = await fetch(`https://dev-games-brown.vercel.app/api/auth/signIn`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -59,12 +61,14 @@ const handler = NextAuth({
         }), 
     ],
     callbacks: {
-        async session({session}){
+        async session({session, user}){
             const sessionUser = await User.findOne({email: session.user.email})
 
             session.user.id = sessionUser._id.toString()
             session.user.name = sessionUser.username
             session.user.level = sessionUser.level
+
+            console.log('check')
             return session
         },
     },
