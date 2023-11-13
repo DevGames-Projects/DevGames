@@ -22,7 +22,7 @@ export const POST = async (req, res) => {
         }
 
 
-        const userExist = await User.find({email : email})
+        const userExist = await User.findOne({email : email})
 
         if (userExist.length > 0){
             isSamePassword =  await bcrypt.compare(password, userExist[0].password)
