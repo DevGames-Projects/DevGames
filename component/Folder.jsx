@@ -9,14 +9,14 @@ export default function Folders(props){
     const isClicked = React.useRef(false)
     const [isSelect, setIsSelect] =React.useState(false)
     const [newPosition, setNewPosition] = React.useState({
-        top: props.position.top,
-        left: props.position.left
+        top: 0,
+        left:0
     })
     const coords = React.useRef({
-        startX: props.position.left,
-        startY: props.position.top,
-        lastX: props.position.left,
-        lastY: props.position.top
+        startX: 0,
+        startY: 0,
+        lastX: 0,
+        lastY: 0
     })
 
 
@@ -32,6 +32,14 @@ export default function Folders(props){
             right: window.innerWidth
 
         }
+
+        setNewPosition({
+            top: (props.position.top * (window.innerHeight - (window.innerHeight * 22) / 342)) / 100,
+            left: (props.position.left * window.innerWidth ) / 100
+        })
+
+        coords.current.lastX = (props.position.left * window.innerWidth ) / 100
+        coords.current.lastY = (props.position.top * (window.innerHeight - (window.innerHeight * 22) / 342)) / 100
 
 
         function handleMouseDown(e){

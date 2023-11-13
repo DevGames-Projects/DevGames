@@ -148,14 +148,14 @@ button {
 // Auth
 
 #signin{
-  height: 35%;
+  height: 35vh;
 }
 
 .auth {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 70%;
   height: 26%;
   background: #B9B9B9;
   padding: 5px;
@@ -456,5 +456,21 @@ button {
     display: grid;
     grid: auto / 1fr 1fr 1fr 1fr;
     margin-top: 10px;
+  }
+}
+
+.left-click {
+  position: absolute;
+  background: #B9B9B9;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  button {
+    user-select: none;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
   }
 }

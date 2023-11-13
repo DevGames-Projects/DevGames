@@ -15,12 +15,17 @@ import {folderData} from "@/data/folderData";
 import Folders from "@/component/Folder";
 import FolderWindow, {NormalFolderWindow} from "@/component/FolderWindow";
 import {useCustomInfo} from "@/component/CustomProvider";
+import LeftClick from "@/component/LeftClick";
 
 export default function Page(){
     const {data: session} = useSession()
     const [navShow, setNavShow] = React.useState(true)
     const [loadingShow, setLoadingShow] = React.useState(false)
     const [windowHeight, setWindowHeight] = React.useState(null)
+    const [mousePosition, setMousePosition] = React.useState({
+        top: 0,
+        left: 0
+    })
 
     const [onglet, setOnglet] = React.useState({
         login: {
@@ -46,6 +51,7 @@ export default function Page(){
     const [folderWindow, setFolderWindow] = React.useState([])
     const containerRef= useRef()
     const { customInfo, setCustomInfoData } = useCustomInfo()
+    const [isLeftClick, setIsLeftClick] = React.useState(false)
 
     React.useEffect(() => {
         if (typeof window !== "undefined") {
@@ -60,16 +66,27 @@ export default function Page(){
         }))
     }, [])
 
+    function handleLeftClick(e){
+        e.preventDefault()
+        setIsLeftClick(true)
+        setMousePosition({
+            top: e.clientY,
+            left: e.clientX
+        })
+
+        console.log(e.clientX, e.clientY)
+    }
+
     return(
         <>
             <Nav onglet={onglet} setOnglet={setOnglet} navShow={navShow} />
-            <main style={{height: navShow || loadingShow ? `${windowHeight - ((windowHeight * 22) / 342)}px` : `${windowHeight}`}} ref={containerRef} id='mainHome' onContextMenu={(e) => e.preventDefault()}>
+            <main style={{height: navShow || loadingShow ? `${windowHeight - ((windowHeight * 22) / 342)}px` : `${windowHeight}`}} ref={containerRef} id='mainHome' onContextMenu={(e) => session?.user ? handleLeftClick(e): null}>
                 <LoginElement onglet={onglet} setOnglet={setOnglet} setLoadingShow={setLoadingShow} containerRef={containerRef} />
                 <SignInElement onglet={onglet} setOnglet={setOnglet} setLoadingShow={setLoadingShow}  containerRef={containerRef}/>
                 <News onglet={onglet} setOnglet={setOnglet}/>
                 <FileWindow setFileWindow={setFileWindow} fileWindow={fileWindow} containerRef={containerRef}/>
                 <FolderWindow folderWindow={folderWindow} setFolderWindow={setFolderWindow} containerRef={containerRef}/>
-
+                <LeftClick mousePosition={mousePosition} isLeftCLick={isLeftClick} setIsLeftClick={setIsLeftClick}/>
                 {
                     folderData.map(folder => folder.level === 0 ? <Folders folderWindow={folderWindow} setFolderWindow={setFolderWindow} containerRef={containerRef} {...folder} /> : null)
                 }

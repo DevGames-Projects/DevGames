@@ -11,8 +11,8 @@ export const folderData = [
         level: 0,
         img: 'assets/icons/settingsFolder.svg',
         position: {
-            top: window.innerHeight - ((window.innerHeight * 22) / 342) - 150,
-            left: window.innerWidth - 120
+            top: 80,
+            left: 93.3
         },
         draggable: false
     },

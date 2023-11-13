@@ -13,11 +13,11 @@ export const fileData = [
         ,
         type: 'read',
         isMinimize: false,
-        level: 1,
+        level: 0,
         img: 'assets/icons/file.svg',
         position: {
-            top: 5,
-            left: 500
+            top: 3,
+            left: 1
         },
         draggable: true,
         firstPage: true
