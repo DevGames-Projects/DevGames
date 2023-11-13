@@ -16,8 +16,8 @@ export const fileData = [
         level: 1,
         img: 'assets/icons/file.svg',
         position: {
-            top: 5,
-            left: 500
+            top: 3,
+            left: 3
         },
         draggable: true,
         firstPage: true

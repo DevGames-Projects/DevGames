@@ -36,12 +36,12 @@ export default function Files(props){
         }
 
         setNewPosition({
-            top: (props.position.top * (window.innerHeight - (window.innerHeight * 22) / 342)) / 100,
-            left: (props.position.left * window.innerWidth ) / 100
+            top: (props.position.top * ((window.innerHeight - (window.innerHeight * 22) / 342) - file.offsetHeight)) / 100,
+            left: (props.position.left * (window.innerWidth - file.offsetWidth)  ) / 100
         })
 
-        coords.current.lastX = (props.position.left * window.innerWidth ) / 100
-        coords.current.lastY = (props.position.top * (window.innerHeight - (window.innerHeight * 22) / 342)) / 100
+        coords.current.lastX = (props.position.left * (window.innerWidth - file.offsetWidth)  ) / 100
+        coords.current.lastY = (props.position.top * ((window.innerHeight - (window.innerHeight * 22) / 342) - file.offsetHeight)) / 100
 
 
         function handleMouseDown(e){
