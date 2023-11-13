@@ -29,7 +29,6 @@ export const POST = async (req, res) => {
         }
 
         if(userExist.length === 0 || !isSamePassword){
-            console.log('pas de user')
             return new Response(JSON.stringify("erreur user"), { status: 500})
         }
 
