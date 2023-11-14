@@ -151,16 +151,12 @@ button:active {
   justify-content: space-evenly;
 }
 
-#signin {
-  height: 35%;
-}
-
 .auth {
   position: absolute;
   top: 0;
   left: 0;
-  width: 70%;
-  height: 26%;
+  width: 50%;
+  min-width: 600px;
   background: #B9B9B9;
   padding: 5px;
   font-size: 1rem;
@@ -186,6 +182,11 @@ button:active {
   flex-direction: column;
   gap: 10px;
 }
+.auth .information-form .form-auth .input-form-container .inputs-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .auth .information-form .form-auth .input-form-container .title-form {
   padding-bottom: 20px;
 }
@@ -206,6 +207,7 @@ button:active {
   border-top: 2px solid grey;
   border-left: 2px solid grey;
   padding: 3px 0;
+  width: 50%;
   font-size: 1rem;
 }
 .auth .information-form .form-auth .input-form-container #name {
