@@ -12,7 +12,7 @@ export const folderData = [
         img: 'assets/icons/settingsFolder.svg',
         position: {
             top: 80,
-            left: 93.3
+            left: 99
         },
         draggable: false
     },
