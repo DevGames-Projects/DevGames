@@ -15,7 +15,7 @@ const handler = NextAuth({
 
                 if (credentials?.type === 'logIn') {
                     console.log(req.body.callbackUrl);
-                    promises.push(fetch(`https://earnest-entremet-d23403.netlify.app/api/auth/logIn`, {
+                    promises.push(fetch(`https://dev-games-brown.vercel.app/api/auth/logIn`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
