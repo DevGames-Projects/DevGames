@@ -158,6 +158,10 @@ button {
   font-size: 1rem;
   overflow: hidden;
   transform-origin: center;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
 
 
   .information-form {
