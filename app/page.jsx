@@ -20,7 +20,7 @@ import LeftClick from "@/component/LeftClick";
 export default function Page(){
     const {data: session} = useSession()
     const [navShow, setNavShow] = React.useState(true)
-    const [loadingShow, setLoadingShow] = React.useState(false)
+    const [loadingShow, setLoadingShow] = React.useState(true)
     const [windowHeight, setWindowHeight] = React.useState(null)
     const [mousePosition, setMousePosition] = React.useState({
         top: 0,
