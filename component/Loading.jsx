@@ -25,7 +25,7 @@ export function Loading({setLoadingShow, loadingShow}){
 
         setTimeout(() => {
             setLoadingShow(false)
-        }, 12000)
+        }, 6000)
 
         return () => {
             container.removeEventListener('mousemove', handleMove)
