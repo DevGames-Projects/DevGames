@@ -151,21 +151,20 @@ button:active {
   justify-content: space-evenly;
 }
 
-#signin {
-  height: 35vh;
-}
-
 .auth {
   position: absolute;
   top: 0;
   left: 0;
-  width: 70%;
-  height: 26%;
+  width: 50%;
   background: #B9B9B9;
   padding: 5px;
   font-size: 1rem;
   overflow: hidden;
   transform-origin: center;
+  border-top: 3px solid grey;
+  border-left: 3px solid grey;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
 }
 .auth .information-form {
   display: flex;
