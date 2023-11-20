@@ -3,7 +3,7 @@
 import React, {useRef} from "react";
 
 import Nav from "@/component/Nav";
-import {LoginElement, SignInElement} from "@/component/Auth";
+import {ChangePassword, LoginElement, SignInElement} from "@/component/Auth";
 import {Loading} from "@/component/Loading";
 import NavBottom from "@/component/NavBottom";
 import News from "@/component/News";
@@ -39,6 +39,12 @@ export default function Page(){
             isMinimize: false,
             img: '/assets/icons/news.svg',
             isOpen: false,
+            ongletFirst: false
+        },
+        changePassword: {
+            isMinimize: false,
+            img: "/assets/icons/changePassword.svg",
+            isOpen: true,
             ongletFirst: false
         }
     })

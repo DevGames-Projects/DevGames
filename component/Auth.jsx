@@ -2,6 +2,7 @@
 
 import React, {useRef} from "react";
 import {signIn, useSession} from "next-auth/react";
+import {useCustomInfo} from "@/component/CustomProvider";
 
 export function LoginElement({ containerRef, setLoadingShow, setOnglet, onglet}){
     const {data: session} = useSession()

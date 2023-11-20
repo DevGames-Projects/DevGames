@@ -210,8 +210,8 @@ export function FileInFolder(props){
 
 
     return(
-        <article class="file-in-folder" id={props.name} onDoubleClick={handleDoubleClick}>
-            <img src={props.img} alt={props.name + 'file'}/>
+        <article class="file-in-folder"  id={props.name} onDoubleClick={handleDoubleClick}>
+            <div style={{backgroundImage: `url(${props.img})`}}></div>
             <p class="file-name">{props.name}</p>
         </article>
     )
